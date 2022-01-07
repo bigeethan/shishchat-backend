@@ -124,4 +124,9 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+
+    @GetMapping("/loading")
+    public String returnLoading() {
+        return "Server loaded";
+    }
 }
