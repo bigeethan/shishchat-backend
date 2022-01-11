@@ -10,7 +10,7 @@ public class Post {
     @Column(name = "id")
     public Long id;
 
-    @Column(name = "user")
+    @Column(name = "username")
     public String user;
 
     @Column(name = "text")
