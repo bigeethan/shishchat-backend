@@ -1,6 +1,7 @@
 package com.web.socket.websocket.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "generalposts")
@@ -10,12 +11,15 @@ public class Post {
     @Column(name = "id")
     public Long id;
 
+    @NotBlank
     @Column(name = "username")
     public String user;
 
+    @NotBlank
     @Column(name = "text")
     public String text;
 
+    @NotBlank
     @Column(name = "image")
     public String image;
 
