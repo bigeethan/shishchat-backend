@@ -23,7 +23,7 @@ public class PostController {
         return postRepository.findAll();
     }
 
-    @PostMapping(name = "/createpost")
+    @PostMapping("/createpost")
     public ResponseEntity<?> createPost(@Valid @RequestBody Post post) {
         postRepository.save(post);
 
