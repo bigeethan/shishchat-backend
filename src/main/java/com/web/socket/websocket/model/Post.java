@@ -15,7 +15,7 @@ public class Post {
     @Column(name = "username")
     public String user;
 
-    @NotBlank 
+    @NotBlank
     @Column(name = "text")
     public String text;
 
