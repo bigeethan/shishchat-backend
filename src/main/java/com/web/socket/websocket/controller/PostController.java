@@ -22,7 +22,7 @@ public class PostController {
     }
 
     @GetMapping("/getposts/{user}")
-    public Optional<Post> getPostsByUser(@PathVariable String user) {
+    public List<Post> getPostsByUser(@PathVariable String user) {
         return postRepository.findByUser(user);
     }
 
