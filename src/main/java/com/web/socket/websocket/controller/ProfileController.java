@@ -27,7 +27,7 @@ public class ProfileController {
         return ResponseEntity.ok(new MessageResponse("Profile created successfully!"));
     }
 
-    @PutMapping("/employees/{username}")
+    @PutMapping("/editprofile/{username}")
     public ResponseEntity<?> updateProfile(@PathVariable String username, @Valid @RequestBody Profile userProfile) {
         Profile profile = (Profile) profileRepository.findByUsername(username);
 
