@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 public class ProfileController {
@@ -16,7 +16,7 @@ public class ProfileController {
     ProfileRepository profileRepository;
 
     @GetMapping("/getprofile/{username}")
-    public Optional<Profile> getProfile(@PathVariable String username) {
+    public List<Profile> getProfile(@PathVariable String username) {
         return profileRepository.findByUsername(username);
     }
 
@@ -24,6 +24,15 @@ public class ProfileController {
     public ResponseEntity<?> createProfile(@Valid @RequestBody Profile profile) {
         profileRepository.save(profile);
 
+        return ResponseEntity.ok(new MessageResponse("Profile created successfully!"));
+    }
+
+    @PutMapping("/employees/{username}")
+    public ResponseEntity<?> updateProfile(@PathVariable String username, @Valid @RequestBody Profile userProfile) {
+        Profile profile = (Profile) profileRepository.findByUsername(username);
+
+        profile.setBio(userProfile.getBio());
+        profileRepository.save(profile);
         return ResponseEntity.ok(new MessageResponse("Profile created successfully!"));
     }
 }
