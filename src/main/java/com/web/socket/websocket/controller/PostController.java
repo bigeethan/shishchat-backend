@@ -21,7 +21,10 @@ public class PostController {
         return postRepository.findAll();
     }
 
-
+    @GetMapping("/getposts/{username}")
+    public Optional<Post> getPostsByUser(@PathVariable String username) {
+        return postRepository.findByUsername(username);
+    }
 
     @PostMapping("/createpost")
     public ResponseEntity<?> createPost(@Valid @RequestBody Post post) {
