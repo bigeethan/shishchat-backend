@@ -16,7 +16,7 @@ public class ProfileController {
     ProfileRepository profileRepository;
 
     @GetMapping("/getprofile/{username}")
-    public List<Profile> getProfile(@PathVariable String username) {
+    public Profile getProfile(@PathVariable String username) {
         return profileRepository.findByUsername(username);
     }
 
@@ -29,7 +29,7 @@ public class ProfileController {
 
     @PutMapping("/editprofile/{username}")
     public ResponseEntity<?> updateProfile(@PathVariable String username, @Valid @RequestBody Profile userProfile) {
-        Profile profile = (Profile) profileRepository.findByUsername(username);
+        Profile profile = profileRepository.findByUsername(username);
 
         profile.setBio(userProfile.getBio());
         profileRepository.save(profile);
