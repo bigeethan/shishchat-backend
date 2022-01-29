@@ -23,7 +23,7 @@ public class PostController {
 
     @GetMapping("/getposts/{user}")
     public Optional<Post> getPostsByUser(@PathVariable String user) {
-        return postRepository.findByUsername(user);
+        return postRepository.findByUser(user);
     }
 
     @PostMapping("/createpost")
