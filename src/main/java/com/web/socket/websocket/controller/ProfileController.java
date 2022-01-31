@@ -15,11 +15,6 @@ public class ProfileController {
     @Autowired
     ProfileRepository profileRepository;
 
-    @GetMapping("/getprofile/{username}")
-    public Profile getProfile(@PathVariable String username) {
-        return profileRepository.findByUsername(username);
-    }
-
     @PostMapping("/createprofile/{username}")
     public ResponseEntity<?> createProfile(@PathVariable String username, @Valid @RequestBody Profile profile) {
         if (profileRepository.existsByUsername(username) == true) {
@@ -29,6 +24,11 @@ public class ProfileController {
 
             return ResponseEntity.ok(new MessageResponse("Profile created successfully!"));
         }
+    }
+
+    @GetMapping("/getprofile/{username}")
+    public Profile getProfile(@PathVariable String username) {
+        return profileRepository.findByUsername(username);
     }
 
     @PutMapping("/editprofile/{username}")
