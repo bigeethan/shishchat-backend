@@ -20,11 +20,15 @@ public class ProfileController {
         return profileRepository.findByUsername(username);
     }
 
-    @PostMapping("/createprofile")
-    public ResponseEntity<?> createProfile(@Valid @RequestBody Profile profile) {
-        profileRepository.save(profile);
+    @PostMapping("/createprofile/{username}")
+    public ResponseEntity<?> createProfile(@PathVariable String username, @Valid @RequestBody Profile profile) {
+        if (profileRepository.existsByUsername(username) == true) {
+            return ResponseEntity.ok(new MessageResponse("Profile already exists"));
+        } else {
+            profileRepository.save(profile);
 
-        return ResponseEntity.ok(new MessageResponse("Profile created successfully!"));
+            return ResponseEntity.ok(new MessageResponse("Profile created successfully!"));
+        }
     }
 
     @PutMapping("/editprofile/{username}")
