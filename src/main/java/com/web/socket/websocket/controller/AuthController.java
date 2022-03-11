@@ -125,6 +125,13 @@ public class AuthController {
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
+    @DeleteMapping("/deleteUser{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        userRepository.deleteById(id);
+
+        return ResponseEntity.ok(new MessageResponse("User deleted successfully!"));
+    }
+
     @GetMapping("/loading")
     public String returnLoading() {
         return "Server loaded";

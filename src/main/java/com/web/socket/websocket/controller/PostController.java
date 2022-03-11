@@ -32,4 +32,11 @@ public class PostController {
 
         return ResponseEntity.ok(new MessageResponse("Post created successfully!"));
     }
+
+    @DeleteMapping("/deletepost/{id}")
+    public ResponseEntity<?> deletePostById(@PathVariable Long id) {
+        postRepository.deleteById(id);
+
+        return ResponseEntity.ok(new MessageResponse("Post deleted successfully!"));
+    }
 }
