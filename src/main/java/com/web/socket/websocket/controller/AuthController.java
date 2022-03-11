@@ -125,9 +125,10 @@ public class AuthController {
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
-    @DeleteMapping("/deleteUser{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
-        userRepository.deleteById(id);
+    @DeleteMapping("/deleteUser{username}")
+    public ResponseEntity<?> deleteUser(@PathVariable String username) {
+        User user = userRepository.findByUsername(username);
+        userRepository.delete(user);
 
         return ResponseEntity.ok(new MessageResponse("User deleted successfully!"));
     }
